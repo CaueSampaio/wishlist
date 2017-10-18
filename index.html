@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <title>Document</title>
+    <script src="js/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="/modules/core/product.module.js"></script>
+    <script src="/modules/core/product.service.js"></script>
+    <script src="/modules/core/product.controller.js"></script>
+
+</head>
+
+<body ng-controller="productController">
+    <div class="container-fluid row">
+        <section class="flex-9">
+            <header>
+                <h1>Products</h1>
+            </header>
+            <div class="products">
+                <ul class="row -wrap">
+                    <li ng-repeat="product in products">
+                        <div class="product card">
+                            <img ng-src="{{product.imgUrl}}" alt="product photo">
+                            <div class="product-data row -space-between">
+                                <div class="product-desc">
+                                    <h3>{{product.name}}</h3>
+                                    <p>{{product.price}}</p>
+                                </div>
+                                <div class="row -wrap" ng-click="loadProducts()">
+                                    <button ng-click="addWishList(product)">
+                                        <i class="material-icons icon -wish-button">favorite_border</i>
+                                    </button>
+                                    <button ng-click="deleteProduct($index)">
+                                        <i class="material-icons icon -wish-button">delete</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <form class="product add-product card">
+                            <label for="">Adicionar produto</label>
+                            <input ng-model="product.imgUrl" type="text" placeholder="Image link">
+                            <input ng-model="product.name" type="text" placeholder="Product name">
+                            <input ng-model="product.price" type="text" placeholder="Product price">
+                            <button type="button" ng-click="addProduct(product)">Add product</button>
+                        </form>
+                    </li>
+                </ul>
+
+            </div>
+        </section>
+        <aside class="wish-list flex-3">
+            <h1>WishList</h1>
+            <ul>
+                <li ng-repeat="product in wishList">
+                    <div class="product card row -space-between">
+                        <img class="flex-3" ng-src="{{product.imgUrl}}" alt="productImage">
+                        <div class="product-desc flex-6">
+                            <h3>{{product.name}}</h3>
+                            <p>{{product.price}}</p>
+                        </div>
+                        <button class="flex-3" ng-click="removeWishList($index)">
+                            <i class="material-icons icon -wish-button">delete</i>
+                        </button>
+                    </div>
+                </li>
+            </ul>
+        </aside>
+    </div>
+
+</body>
+
+</html>

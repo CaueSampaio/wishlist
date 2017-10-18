@@ -1,0 +1,42 @@
+section {
+    background-color: rgba(255, 209, 209, 0.36);
+    height: 100vh;
+}
+
+button {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0;
+}
+
+aside {
+    h1 {
+        color: $secondaryColor;
+    }
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+    width: 280px;
+    height: 326px;
+
+    button {
+        padding: 15px;
+        background-color: $primaryColor;
+        color: white;
+    }
+
+    label {
+        font-size: 22px;
+        margin: 10px 0;
+    }
+
+    input {
+        border: 0;
+        border-bottom: 1px solid $primaryColor;
+        margin: 10px 0;
+        font-size: 18px;
+    }
+}
