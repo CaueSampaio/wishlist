@@ -1,3 +1,4 @@
 var myApp = angular.module("myApp", [
-    'product'
+    'product',
+    'ui.utils.masks'
 ]);

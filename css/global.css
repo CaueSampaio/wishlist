@@ -77,6 +77,9 @@ ul {
     width: 40px;
     height: 40px; }
 
+header {
+  margin: 30px 0 10px 20px; }
+
 section {
   background-color: rgba(255, 209, 209, 0.36);
   height: 100vh; }
@@ -98,7 +101,11 @@ form {
   form button {
     padding: 15px;
     background-color: #963650;
-    color: white; }
+    color: white;
+    transition: 0.7s; }
+    form button:hover {
+      transition: 0.7s;
+      background-color: #1eaba5; }
   form label {
     font-size: 22px;
     margin: 10px 0; }
@@ -126,15 +133,41 @@ form {
 
 h1 {
   font-size: 32px;
-  color: #963650;
-  margin: 30px 0 10px 20px; }
+  color: #963650; }
 
 .product {
   color: #963650; }
   .product img {
     max-width: 250px; }
 
+.search-box input {
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid #963650;
+  border-radius: 25px;
+  margin-left: 25px;
+  transition: all 1s;
+  width: 100px;
+  height: 30px;
+  padding-left: 10px;
+  color: #963650; }
+.search-box i {
+  position: relative;
+  right: 30px;
+  top: 7px;
+  color: #963650; }
+.search-box:hover input {
+  width: 300px;
+  border-bottom: 1px solid #963650;
+  transition: all 1s; }
+
 .icon.-wish-button {
   color: #963650; }
+.icon:hover {
+  transition: color 0.4s;
+  color: #1eaba5; }
+
+.modal {
+  display: none;
+  margin: 0 auto; }
 
 /*# sourceMappingURL=global.css.map */

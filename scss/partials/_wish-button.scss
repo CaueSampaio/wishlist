@@ -2,4 +2,9 @@
     &.-wish-button {
         color: $primaryColor;
     }
+
+    &:hover {
+        transition: color 0.4s;
+        color: $secondaryColor;
+    }
 }

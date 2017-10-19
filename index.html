@@ -5,12 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta id="microCurrency" itemprop="priceCurrency" content="BRL" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="css/global.css">
     <title>Document</title>
     <script src="js/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.6/angular-locale_pt-br.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-resource.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.6/angular-route.js"></script>
+    <script src="/node_modules/angular-input-masks/releases/angular-input-masks-standalone.min.js"></script>
     <script src="app.js"></script>
     <script src="/modules/core/product.module.js"></script>
     <script src="/modules/core/product.service.js"></script>
@@ -21,12 +24,15 @@
 <body ng-controller="productController">
     <div class="container-fluid row">
         <section class="flex-9">
-            <header>
+            <header class="row">
                 <h1>Products</h1>
+                <div class="search-box">
+                    <input type="search" ng-model="inputSearch"><i class="material-icons">search</i>
+                </div>
             </header>
             <div class="products">
                 <ul class="row -wrap">
-                    <li ng-repeat="product in products">
+                    <li ng-repeat="product in products | filter: inputSearch">
                         <div class="product card">
                             <img ng-src="{{product.imgUrl}}" alt="product photo">
                             <div class="product-data row -space-between">
@@ -41,25 +47,41 @@
                                     <button ng-click="deleteProduct($index)">
                                         <i class="material-icons icon -wish-button">delete</i>
                                     </button>
+                                    <button ng-click="editProduct($index, product)">
+                                        <i class="material-icons icon -wish-button">edit</i>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <li>
-                        <form class="product add-product card">
+                        <form name="addProductForm" class="product add-product card" id="addproduct">
                             <label for="">Adicionar produto</label>
-                            <input ng-model="product.imgUrl" type="text" placeholder="Image link">
-                            <input ng-model="product.name" type="text" placeholder="Product name">
-                            <input ng-model="product.price" type="text" placeholder="Product price">
-                            <button type="button" ng-click="addProduct(product)">Add product</button>
+                            <input ng-model="product.imgUrl" type="text" placeholder="Image link" ng-required="true">
+                            <input ng-model="product.name" type="text" placeholder="Product name" ng-required="true">
+                            <input ng-model="product.price" ng-value="priceValue" type="text" placeholder="Product price" ng-required="true" ui-money-mask="2">
+                            <div ng-show="addProductForm.$invalid">
+                                Preencha os três campos.
+                            </div>
+                            <button ng-disabled="addProductForm.$invalid" type="button" ng-click="addProduct(product)">Add product</button>
                         </form>
+                        <div class="modal" id="modal">
+                            <form class="product add-product card">
+                                <label for="">Editar produto</label>
+                                <input ng-model="product.imgUrl" ng-value="imgValue" id="editImg" type="text" placeholder="Image link">
+                                <input ng-model="product.name" id="editName" ng-value="nameValue" type="text" placeholder="Product name">
+                                <input ng-model="product.price" id="editPrice" ng-value="priceValue" type="text" placeholder="Product price" ui-money-mask="2">
+                                <button type="button" ng-click="saveProduct(product)">Save product</button>
+                            </form>
+                        </div>
                     </li>
                 </ul>
 
             </div>
         </section>
         <aside class="wish-list flex-3">
-            <h1>WishList</h1>
+            <header><h1>WishList</h1></header>
+            
             <ul>
                 <li ng-repeat="product in wishList">
                     <div class="product card row -space-between">

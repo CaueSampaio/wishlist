@@ -5,3 +5,32 @@
         max-width: 250px;
     }
 }
+
+.search-box {
+    input{
+        background: rgba(0,0,0,0);
+        border: 1px solid $primaryColor;
+        border-radius: 25px;
+        margin-left: 25px;
+        transition: all 1s;
+        width: 100px;
+        height: 30px;
+        padding-left: 10px;
+        color: $primaryColor;
+    }
+
+    i {
+        position: relative;
+        right: 30px;
+        top: 7px;
+        color: $primaryColor;
+    }
+
+    &:hover {
+        input {
+            width: 300px;
+            border-bottom: 1px solid $primaryColor;
+            transition: all 1s;
+        }
+    }
+}

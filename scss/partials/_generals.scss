@@ -1,3 +1,7 @@
+header {
+    margin: 30px 0 10px 20px;
+}
+
 section {
     background-color: rgba(255, 209, 209, 0.36);
     height: 100vh;
@@ -26,6 +30,12 @@ form {
         padding: 15px;
         background-color: $primaryColor;
         color: white;
+        transition: 0.7s;
+
+        &:hover {
+            transition: 0.7s;
+            background-color: $secondaryColor;
+        }
     }
 
     label {

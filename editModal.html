@@ -1,0 +1,9 @@
+<div class="modal-edit">
+    <form class="product add-product card">
+        <label for="">Adicionar produto</label>
+        <input ng-model="product.imgUrl" type="text" placeholder="Image link"> 
+        <input ng-model="product.name" type="text" id="editName" placeholder="Product name">
+        <input ng-model="product.price" type="text" placeholder="Product price">
+        <button type="button" ng-click="saveProduct(product)">Save product</button>
+    </form>
+</div>
